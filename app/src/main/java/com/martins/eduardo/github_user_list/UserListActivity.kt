@@ -23,16 +23,16 @@ class UserListActivity : AppCompatActivity() {
 
         val service = retrofit.create(GitHubService::class.java)
 
-        var listaCompleta = service.listRepos("eduardomartinsl")
-
-        listaCompleta.enqueue(object: Callback<List<Repo>>{
-            override fun onFailure(t: Throwable?) {
-            }
-
-            override fun onResponse(response: Response<List<Repo>>?) {
-                var listatop = response?.body()
-            }
-
-        })
+//        var listaCompleta = service.listRepos("eduardomartinsl")
+//
+//        listaCompleta.enqueue(object: Callback<List<Repo>>{
+//            override fun onFailure(t: Throwable?) {
+//            }
+//
+//            override fun onResponse(response: Response<List<Repo>>?) {
+//                var listatop = response?.body()
+//            }
+//
+//        })
     }
 }
