@@ -75,13 +75,13 @@ dependencies {
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
     // Annotation processor
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
     implementation 'androidx.fragment:fragment-ktx:1.1.0'
-
-    //dagger
-    implementation 'com.google.dagger:dagger:2.21'
 
     def daggerVer = 2.27 // or latest version
 
