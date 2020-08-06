@@ -7,9 +7,10 @@ import retrofit.GsonConverterFactory
 import retrofit.Retrofit
 import javax.inject.Singleton
 
+private val BASE_URL = "https://api.github.com/"
+
 @Module
 open class RemoteModule {
-    private val BASE_URL = "https://api.github.com/"
 
     @Provides
     @Singleton
@@ -18,5 +19,4 @@ open class RemoteModule {
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .build()
-
 }
