@@ -16,7 +16,4 @@ interface AppComponent {
 
     //viewModel
     fun inject(viewModel: UserListViewModel)
-
-    //Repository
-    fun inject(repository: Repository)
 }

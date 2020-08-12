@@ -1,12 +1,15 @@
 package com.martins.eduardo.github_user_list.services
 
 import com.martins.eduardo.github_user_list.models.Repo
-import retrofit2.Call
+import com.martins.eduardo.github_user_list.models.User
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 
 interface GitHubService {
     @GET("users/{user}/repos")
-    suspend fun getAllRepository(@Path("user") user: String): List<Repo>
+    suspend fun getAllRepositoryByUsername(@Path("user") user: String): List<Repo>
+
+    @GET("users/{user}")
+    suspend fun findUser(@Path("user") user: String): User
 }
