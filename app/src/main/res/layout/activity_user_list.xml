@@ -6,17 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".ui.UserListActivity">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/imageView"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/nomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="UsuarioNome"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:fontFamily="sans-serif-black"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/usuarioContaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UsuarioConta"
+        app:layout_constraintStart_toStartOf="@+id/nomeTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nomeTextView" />
+
+    <TextView
+        android:id="@+id/usuarioBioTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="usuarioBio"
+        app:layout_constraintStart_toStartOf="@+id/usuarioContaTextView"
+        app:layout_constraintTop_toBottomOf="@+id/usuarioContaTextView" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
-        android:layout_height="681dp"
-        android:layout_marginTop="1dp"
+        android:id="@+id/ListaRepositoriosRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/item_repository" />
 </androidx.constraintlayout.widget.ConstraintLayout>

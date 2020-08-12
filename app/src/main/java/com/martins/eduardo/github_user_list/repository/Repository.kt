@@ -1,32 +1,22 @@
 package com.martins.eduardo.github_user_list.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.app.Application
+import com.martins.eduardo.github_user_list.extensions.component
 import com.martins.eduardo.github_user_list.models.Repo
-import com.martins.eduardo.github_user_list.retrofit.webClient.GitHubWebClient
+import com.martins.eduardo.github_user_list.services.GitHubService
+import javax.inject.Inject
 
-class Repository(
-    private val webClient : GitHubWebClient = GitHubWebClient()
-) {
-    fun buscaTodosRepositoriosNoGit(
+
+class Repository @Inject constructor(
+//    private val service: GitHubService
+){
+
+    @Inject lateinit var service: GitHubService
+
+    suspend fun buscaTodosRepositoriosNoGit(
         username: String
-    ): LiveData<RepositoryResource<List<Repo>>> {
-
-        //mutablelivedata responsável por armazenar a informação a ser passada para a ViewModel
-        val liveData = MutableLiveData<RepositoryResource<List<Repo>>>()
-
-        webClient.buscaTodosRepositorios(
-            username,
-            whenSuccess = { listaRepositorios ->
-                //em sucesso, retornar lista de repositorios
-
-                liveData.value = RepositoryResource(data = listaRepositorios)
-            },
-            whenFailure = {erro ->
-                RepositoryResource(null, erro)
-            }
-        )
-
-        return liveData
+    ) : List<Repo>{
+        val allRepository = service.getAllRepository(username)
+        return allRepository
     }
 }

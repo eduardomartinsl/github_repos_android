@@ -1,16 +1,37 @@
 package com.martins.eduardo.github_user_list.viewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.*
+import com.martins.eduardo.github_user_list.extensions.component
 import com.martins.eduardo.github_user_list.models.Repo
 import com.martins.eduardo.github_user_list.repository.Repository
-import com.martins.eduardo.github_user_list.repository.RepositoryResource
+import kotlinx.coroutines.launch
+import java.io.Console
+import java.lang.Exception
+import javax.inject.Inject
 
+class UserListViewModel (application: Application) : AndroidViewModel(application){
 
-class UserListViewModel(private val repository: Repository) : ViewModel(){
+    @Inject lateinit var repository: Repository
 
-    fun buscaTodosRepositorios(username: String) : LiveData<RepositoryResource<List<Repo>>> {
-        return repository.buscaTodosRepositoriosNoGit(username)
+    init {
+        getApplication<Application>().component.inject(this)
     }
 
+    private val _listaRepositorios = MutableLiveData<List<Repo>>()
+    val listaRepositorio : LiveData<List<Repo>>
+    get() = _listaRepositorios
+
+    fun buscaTodosRepositorios(username: String) {
+        viewModelScope.launch {
+            try {
+                val repositoriosEncontrados = repository.buscaTodosRepositoriosNoGit(username)
+                _listaRepositorios.postValue(repositoriosEncontrados)
+            }catch (e: Exception){
+                Log.e("Erro de comunicação", e.message!!)
+            }
+
+        }
+    }
 }
