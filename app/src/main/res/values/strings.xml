@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">github-user-list</string>
-    <string name="pesquisar_por_usuario">Pesquisar por usuário</string>
+    <string name="pesquisar_por_usuario">Usuário</string>
 </resources>

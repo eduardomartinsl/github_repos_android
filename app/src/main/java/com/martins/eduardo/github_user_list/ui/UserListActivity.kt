@@ -24,7 +24,6 @@ class UserListActivity : AppCompatActivity() {
         viewModel.buscaTodosRepositorios("eduardomartinsl")
         viewModel.listaRepositorio.observe(this, androidx.lifecycle.Observer {
 
-
             val divisor = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
             val listaRepositoriosAdapter = ListaRepositoriosAdapter(it.toMutableList())
 
