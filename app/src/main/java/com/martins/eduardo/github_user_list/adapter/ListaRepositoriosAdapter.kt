@@ -30,7 +30,7 @@ class ListaRepositoriosAdapter(private val listaRepositorios: MutableList<Repo> 
 
         val repositorio = listaRepositorios[position]
 
-        viewHolder.titulo.text = repositorio.full_name
+        viewHolder.titulo.text = repositorio.name
         viewHolder.descricao.text = repositorio.description
         viewHolder.linguagem.text = repositorio.language
 

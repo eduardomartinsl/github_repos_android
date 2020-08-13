@@ -31,9 +31,10 @@
         android:id="@+id/LanguageColorView"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/DescricaoRepositoryTextView"
         app:layout_constraintTop_toBottomOf="@+id/DescricaoRepositoryTextView" />
 
@@ -44,7 +45,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:text="LanguageTextView"
-        app:layout_constraintStart_toEndOf="@+id/LanguageColorView"
-        app:layout_constraintTop_toTopOf="@+id/LanguageColorView" />
+        app:layout_constraintBottom_toBottomOf="@+id/LanguageColorView"
+        app:layout_constraintStart_toEndOf="@+id/LanguageColorView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
