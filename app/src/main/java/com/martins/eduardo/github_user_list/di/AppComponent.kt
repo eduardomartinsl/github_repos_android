@@ -9,7 +9,7 @@ import com.martins.eduardo.github_user_list.viewModel.UserListViewModel
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [(AppModule::class), (RemoteModule::class)])
+@Component(modules = [(AppModule::class), (RemoteModule::class), (DbModule::class)])
 @Singleton
 interface AppComponent {
 
