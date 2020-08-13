@@ -15,6 +15,4 @@ interface SugestoesDao{
 
     @Insert(onConflict = REPLACE)
     suspend fun atualizaHistoricoBusca(sugestao: Sugestao)
-
-
 }
