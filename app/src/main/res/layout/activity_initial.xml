@@ -23,7 +23,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:drawableTint="@color/iconColor"/>
+        android:drawableTint="@color/iconColor"
+        android:text="@string/pesquisar_por_usuario"
+        android:gravity="center_vertical"
+        android:textColor="@color/iconColor"/>
 
     <ImageView
         android:id="@+id/imageView2"

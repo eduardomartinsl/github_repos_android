@@ -16,6 +16,7 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         editTextBuscaUsuario.paintFlags = 0
+        editTextBuscaUsuario.requestFocus()
 
         editTextBuscaUsuario.setOnEditorActionListener{v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
