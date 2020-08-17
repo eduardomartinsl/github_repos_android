@@ -31,7 +31,14 @@ class UserListActivity : AppCompatActivity() {
             nomeTextView.text = user.name
             usuarioContaTextView.text = user.login
             usuarioBioTextView.text = user.bio
+        })
 
+        viewModel.isLoading.observe(this, Observer {isLoading ->
+            if(isLoading){
+                LoadingInfo.show()
+            }else{
+                LoadingInfo.hide()
+            }
         })
 
         viewModel.listaRepositorio.observe(this, androidx.lifecycle.Observer {

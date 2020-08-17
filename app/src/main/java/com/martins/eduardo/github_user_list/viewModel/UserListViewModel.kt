@@ -28,8 +28,13 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
     val usuario: LiveData<User>
         get() = _usuario
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     fun buscaInformacoesDeUsuario(username: String) {
         viewModelScope.launch {
+            _isLoading.postValue(true)
             try {
                 val usuarioEncontrado = repository.buscaUsuario(username)
                 _usuario.postValue(usuarioEncontrado)
@@ -40,7 +45,7 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
             }catch (e: Exception){
                 Log.e("Erro de comunicação", e.message!!)
             }
-
+            _isLoading.postValue(false)
         }
     }
 }
