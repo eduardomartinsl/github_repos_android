@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.martins.eduardo.github_user_list.extensions.component
 import com.martins.eduardo.github_user_list.models.Repo
+import com.martins.eduardo.github_user_list.models.User
 import com.martins.eduardo.github_user_list.repository.Repository
 import kotlinx.coroutines.launch
 import java.io.Console
@@ -23,11 +24,19 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
     val listaRepositorio : LiveData<List<Repo>>
     get() = _listaRepositorios
 
-    fun buscaTodosRepositorios(username: String) {
+    private val _usuario = MutableLiveData<User>()
+    val usuario: LiveData<User>
+        get() = _usuario
+
+    fun buscaInformacoesDeUsuario(username: String) {
         viewModelScope.launch {
             try {
+                val usuarioEncontrado = repository.buscaUsuario(username)
+                _usuario.postValue(usuarioEncontrado)
+
                 val repositoriosEncontrados = repository.buscaTodosRepositoriosNoGit(username)
                 _listaRepositorios.postValue(repositoriosEncontrados)
+
             }catch (e: Exception){
                 Log.e("Erro de comunicação", e.message!!)
             }

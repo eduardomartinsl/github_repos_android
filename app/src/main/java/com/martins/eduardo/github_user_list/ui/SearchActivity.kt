@@ -30,14 +30,18 @@ class SearchActivity : AppCompatActivity() {
         editTextBuscaUsuario.paintFlags = 0
         editTextBuscaUsuario.requestFocus()
 
-        carregaSugestoes()
-
-        editTextBuscaUsuario.setOnEditorActionListener{v, actionId, event ->
+        editTextBuscaUsuario.setOnEditorActionListener{textView, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
 
-                //iniciar activity com o usuario a ser pesqusiado
-                viewModel.salvaSugestao(v.text.toString())
+                //iniciar activity com o usuario a ser pesquisado
+
+                val usuario = textView.text.toString()
+
+                viewModel.salvaSugestao(usuario)
+
                 val intent = Intent(this, UserListActivity::class.java)
+                intent.putExtra("usuario_pesquisa", usuario)
+
                 startActivity(intent)
                 true
             }else{
@@ -46,12 +50,12 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    fun carregaSugestoes(){
+    override fun onResume() {
+        super.onResume()
+
         viewModel.carregaListaHistorico()
 
         viewModel.listaHistorico.observe(this, Observer {listaSugestoes ->
-            //carrega as informações da lista em um adapter
-
             val divisor = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
             val linearLayoutManager = LinearLayoutManager(this)
             linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -64,4 +68,5 @@ class SearchActivity : AppCompatActivity() {
         })
 
     }
+
 }

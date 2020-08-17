@@ -24,7 +24,7 @@ class ListaSugestoesAdapter(private val listaSugestoes: MutableList<Sugestao> = 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val sugestao = listaSugestoes[position]
 
-//        viewHolder.sugestaoTextView.text = sugestao.sugestao
+        viewHolder.sugestaoTextView.text = sugestao.sugestao
 
         //todo implementar action de remoção de sugestao
     }
@@ -32,8 +32,8 @@ class ListaSugestoesAdapter(private val listaSugestoes: MutableList<Sugestao> = 
     override fun getItemCount(): Int = listaSugestoes.count()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-//        val sugestaoTextView = itemView.SugestaoTextView
-        val removeSugestao = itemView.removeSugestao
+        val sugestaoTextView = itemView.SugestaoTextView
+//        val removeSugestao = itemView.removeSugestao
     }
 
 }
