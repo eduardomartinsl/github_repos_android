@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.UserListActivity">
 
-    <View
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="128dp"
         android:layout_height="128dp"

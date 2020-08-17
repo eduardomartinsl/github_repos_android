@@ -10,6 +10,7 @@ import com.martins.eduardo.github_user_list.R
 import com.martins.eduardo.github_user_list.adapter.ListaRepositoriosAdapter
 import com.martins.eduardo.github_user_list.extensions.component
 import com.martins.eduardo.github_user_list.viewModel.UserListViewModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_list.*
 
 class UserListActivity : AppCompatActivity() {
@@ -31,6 +32,7 @@ class UserListActivity : AppCompatActivity() {
             nomeTextView.text = user.name
             usuarioContaTextView.text = user.login
             usuarioBioTextView.text = user.bio
+            Picasso.get().load(user.avatar_url).into(imageView)
         })
 
         viewModel.isLoading.observe(this, Observer {isLoading ->
@@ -54,5 +56,6 @@ class UserListActivity : AppCompatActivity() {
             ListaRepositoriosRecyclerView.adapter = listaRepositoriosAdapter
 
         })
+
     }
 }

@@ -2,11 +2,13 @@ package com.martins.eduardo.github_user_list.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.*
 import com.martins.eduardo.github_user_list.extensions.component
 import com.martins.eduardo.github_user_list.models.Repo
 import com.martins.eduardo.github_user_list.models.User
 import com.martins.eduardo.github_user_list.repository.Repository
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import java.io.Console
 import java.lang.Exception
@@ -47,5 +49,12 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
             }
             _isLoading.postValue(false)
         }
+    }
+
+
+    fun carregaImagemUsuario(){
+
+        val imageView = ImageView(getApplication())
+        var a = Picasso.get().load("")!!
     }
 }
