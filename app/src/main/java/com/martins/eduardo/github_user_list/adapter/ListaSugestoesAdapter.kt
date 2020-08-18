@@ -5,10 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.martins.eduardo.github_user_list.R
+import com.martins.eduardo.github_user_list.adapter.listeners.SugestaoClickListeners
 import com.martins.eduardo.github_user_list.models.Sugestao
 import kotlinx.android.synthetic.main.item_sugestao_historico.view.*
 
-class ListaSugestoesAdapter(private val listaSugestoes: MutableList<Sugestao> = mutableListOf()) : RecyclerView.Adapter<ListaSugestoesAdapter.ViewHolder>() {
+class ListaSugestoesAdapter(
+    private val listaSugestoes: MutableList<Sugestao> = mutableListOf(),
+    private val sugestaoClickListeners: SugestaoClickListeners
+) : RecyclerView.Adapter<ListaSugestoesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,14 +30,22 @@ class ListaSugestoesAdapter(private val listaSugestoes: MutableList<Sugestao> = 
 
         viewHolder.sugestaoTextView.text = sugestao.sugestao
 
-        //todo implementar action de remoção de sugestao
+        viewHolder.sugestaoTextView.setOnClickListener{
+            sugestaoClickListeners.onSugestaoClickListener(sugestao)
+        }
+
+        viewHolder.removeSugestao.setOnClickListener {
+            sugestaoClickListeners.OnExcluirSugestaoListener(sugestao)
+        }
     }
 
     override fun getItemCount(): Int = listaSugestoes.count()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
         val sugestaoTextView = itemView.SugestaoTextView
-//        val removeSugestao = itemView.removeSugestao
+        val removeSugestao = itemView.removeSugestaoView
+
     }
 
 }

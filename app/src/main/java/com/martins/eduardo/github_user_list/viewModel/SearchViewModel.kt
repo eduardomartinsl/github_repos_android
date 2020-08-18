@@ -27,7 +27,6 @@ class SearchViewModel(application: Application) : AndroidViewModel(application){
         get() = _listaHistorico
 
     fun carregaListaHistorico(){
-        //deve ir no banco de dados local e buscar os resultados já buscados
         viewModelScope.launch {
             val listaSugestoes = repository.carregaListaSugestoes()
             _listaHistorico.postValue(listaSugestoes)
@@ -41,5 +40,13 @@ class SearchViewModel(application: Application) : AndroidViewModel(application){
         viewModelScope.launch {
             repository.salvaSugestao(sugestao)
         }
+    }
+
+    fun removeSugestao(sugestao: Sugestao){
+        //todo remover sugestão (DAO)
+    }
+
+    fun buscaPorSugestao(sugestao: Sugestao){
+        //todo buscar por sugestão
     }
 }

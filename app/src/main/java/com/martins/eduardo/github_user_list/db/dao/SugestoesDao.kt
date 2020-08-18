@@ -8,8 +8,6 @@ import com.martins.eduardo.github_user_list.models.Sugestao
 
 @Dao
 interface SugestoesDao{
-    //todo create CRUD
-
     @Query("SELECT * FROM Sugestao")
     suspend fun getAllSugestoes() : List<Sugestao>
 
