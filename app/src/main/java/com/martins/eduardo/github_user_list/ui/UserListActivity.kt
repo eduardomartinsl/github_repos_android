@@ -55,6 +55,7 @@ class UserListActivity : AppCompatActivity() {
             ListaRepositoriosRecyclerView.layoutManager = linearLayoutManager
             ListaRepositoriosRecyclerView.adapter = listaRepositoriosAdapter
 
+            qtdeRepositorios.text = it.count().toString()
         })
 
     }
