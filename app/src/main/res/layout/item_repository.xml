@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/DescricaoRepositoryTextView"
         app:layout_constraintTop_toBottomOf="@+id/DescricaoRepositoryTextView"
-        tools:background="@color/iconColor" />
+        tools:background="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/LanguageTextView"

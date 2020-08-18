@@ -4,6 +4,7 @@ package com.martins.eduardo.github_user_list.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -36,16 +37,12 @@ class SearchActivity : AppCompatActivity(), SugestaoClickListeners {
         editTextBuscaUsuario.setOnEditorActionListener{textView, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
 
-                //iniciar activity com o usuario a ser pesquisado
-
                 val usuario = textView.text.toString()
 
+                //salvar sugestão ao ser utilizada a pesquisa
                 viewModel.salvaSugestao(usuario)
 
-                val intent = Intent(this, UserListActivity::class.java)
-                intent.putExtra("usuario_pesquisa", usuario)
-
-                startActivity(intent)
+                buscaUsuario(usuario)
                 true
             }else{
                 false
@@ -69,12 +66,10 @@ class SearchActivity : AppCompatActivity(), SugestaoClickListeners {
             sugestoesRecyclerView.adapter = adapter
 
         })
-
     }
 
     override fun onSugestaoClickListener(sugestao: Sugestao) {
-        viewModel.buscaPorSugestao(sugestao)
-        Toast.makeText(this, "Sugestão clicada: ${sugestao.sugestao}", Toast.LENGTH_SHORT).show()
+        buscaUsuario(sugestao.sugestao)
     }
 
     override fun OnExcluirSugestaoListener(sugestao: Sugestao) {
@@ -82,4 +77,9 @@ class SearchActivity : AppCompatActivity(), SugestaoClickListeners {
         Toast.makeText(this, "Sugestão excluída", Toast.LENGTH_SHORT).show()
     }
 
+    private fun buscaUsuario(usuario: String) {
+        val intent = Intent(this, UserListActivity::class.java)
+        intent.putExtra("usuario_pesquisa", usuario)
+        startActivity(intent)
+    }
 }

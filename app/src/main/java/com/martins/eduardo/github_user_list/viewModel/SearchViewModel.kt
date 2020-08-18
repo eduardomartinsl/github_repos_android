@@ -43,10 +43,9 @@ class SearchViewModel(application: Application) : AndroidViewModel(application){
     }
 
     fun removeSugestao(sugestao: Sugestao){
-        //todo remover sugestão (DAO)
-    }
-
-    fun buscaPorSugestao(sugestao: Sugestao){
-        //todo buscar por sugestão
+        viewModelScope.launch {
+            repository.removeSugestao(sugestao)
+            _listaHistorico.postValue(repository.carregaListaSugestoes())
+        }
     }
 }

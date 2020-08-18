@@ -1,3 +1,5 @@
+@file:Suppress("SENSELESS_COMPARISON")
+
 package com.martins.eduardo.github_user_list.repository
 
 import com.martins.eduardo.github_user_list.db.dao.SugestoesDao
@@ -26,11 +28,17 @@ class Repository @Inject constructor(
     }
 
     suspend fun salvaSugestao(sugestao: Sugestao) {
-        sugestoesDao.atualizaHistoricoBusca(sugestao)
+        if(sugestoesDao.findSugestao(sugestao.sugestao) == null){
+            sugestoesDao.atualizaHistoricoBusca(sugestao)
+        }
     }
 
     suspend fun buscaUsuario(username: String) : User{
         val usuarioRemoto = service.findUser(username)
         return usuarioRemoto
    }
+
+    suspend fun removeSugestao(sugestao: Sugestao) {
+        sugestoesDao.deletaSugestao(sugestao)
+    }
 }
