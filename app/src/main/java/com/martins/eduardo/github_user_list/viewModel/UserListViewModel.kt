@@ -44,17 +44,19 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
                 val repositoriosEncontrados = repository.buscaTodosRepositoriosNoGit(username)
                 _listaRepositorios.postValue(repositoriosEncontrados)
 
+                val listaLinguagens = mutableListOf<String>()
+
+                repositoriosEncontrados.forEach {
+                    listaLinguagens.add(it.language)
+                }
+
+                val a = 1
+
             }catch (e: Exception){
                 Log.e("Erro de comunicação", e.message!!)
             }
+
             _isLoading.postValue(false)
         }
-    }
-
-
-    fun carregaImagemUsuario(){
-
-        val imageView = ImageView(getApplication())
-        var a = Picasso.get().load("")!!
     }
 }

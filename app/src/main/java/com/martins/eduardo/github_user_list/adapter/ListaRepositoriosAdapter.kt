@@ -1,5 +1,6 @@
 package com.martins.eduardo.github_user_list.adapter
 
+import android.graphics.Color
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -31,8 +32,14 @@ class ListaRepositoriosAdapter(private val listaRepositorios: MutableList<Repo> 
         val repositorio = listaRepositorios[position]
 
         viewHolder.titulo.text = repositorio.name
-        viewHolder.descricao.text = repositorio.description
+        if(!repositorio.description.isNullOrEmpty()){
+            viewHolder.descricao.text = repositorio.description
+        }else{
+            viewHolder.descricao.text = "Sem descrição"
+
+        }
         viewHolder.linguagem.text = repositorio.language
+        viewHolder.languageColor.setBackgroundColor(Color.parseColor("#C1F12E"))
 
     }
 
@@ -41,5 +48,6 @@ class ListaRepositoriosAdapter(private val listaRepositorios: MutableList<Repo> 
         val titulo = itemView.TituloRepositoryTextView
         val descricao = itemView.DescricaoRepositoryTextView
         val linguagem = itemView.LanguageTextView
+        val languageColor = itemView.LanguageColorView
     }
 }

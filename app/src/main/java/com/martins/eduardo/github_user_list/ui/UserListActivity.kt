@@ -29,6 +29,7 @@ class UserListActivity : AppCompatActivity() {
 
         viewModel.usuario.observe(this, Observer { user->
             //atualizar informações da página do usuário
+
             nomeTextView.text = user.name
             usuarioContaTextView.text = user.login
             usuarioBioTextView.text = user.bio
@@ -43,10 +44,16 @@ class UserListActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.listaRepositorio.observe(this, androidx.lifecycle.Observer {
+        viewModel.listaRepositorio.observe(this, androidx.lifecycle.Observer {listaRepos ->
+
+            //todo o que fazer com essa lista de linguagens?
+            val listaLinguagens = mutableListOf<String>()
+            listaRepos.forEach {
+                listaLinguagens.add(it.language)
+            }
 
             val divisor = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
-            val listaRepositoriosAdapter = ListaRepositoriosAdapter(it.toMutableList())
+            val listaRepositoriosAdapter = ListaRepositoriosAdapter(listaRepos.toMutableList())
 
             val linearLayoutManager = LinearLayoutManager(this)
             linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -55,7 +62,7 @@ class UserListActivity : AppCompatActivity() {
             ListaRepositoriosRecyclerView.layoutManager = linearLayoutManager
             ListaRepositoriosRecyclerView.adapter = listaRepositoriosAdapter
 
-            qtdeRepositorios.text = it.count().toString()
+            qtdeRepositorios.text = listaRepos.count().toString()
         })
 
     }

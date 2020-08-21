@@ -17,4 +17,7 @@ class DbModule {
     @Provides
     fun providesSugestoesDao(db: AppDatabase) = db.sugestoesDao()
 
+    @Provides
+    fun providesCodeColorsDao(db: AppDatabase) = db.codeColorsDao()
+
 }
