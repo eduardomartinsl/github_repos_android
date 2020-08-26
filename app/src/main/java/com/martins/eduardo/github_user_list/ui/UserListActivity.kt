@@ -46,12 +46,6 @@ class UserListActivity : AppCompatActivity() {
 
         viewModel.listaRepositorio.observe(this, androidx.lifecycle.Observer {listaRepos ->
 
-            //todo o que fazer com essa lista de linguagens?
-            val listaLinguagens = mutableListOf<String>()
-            listaRepos.forEach {
-                listaLinguagens.add(it.language)
-            }
-
             val divisor = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
             val listaRepositoriosAdapter = ListaRepositoriosAdapter(listaRepos.toMutableList())
 

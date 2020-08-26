@@ -13,7 +13,7 @@ interface CodeColorsDao {
     suspend fun insertColors(colors: List<Color>)
 
     @Query("SELECT color from Color where colorName = :colorName")
-    suspend fun selectColorHash(colorName: String) : String
+    suspend fun selectColorHash(colorName: String) : String?
 
 }
 

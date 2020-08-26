@@ -2,8 +2,6 @@
 
 package com.martins.eduardo.github_user_list.repository
 
-import android.app.Application
-import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.martins.eduardo.github_user_list.db.dao.CodeColorsDao
@@ -13,7 +11,6 @@ import com.martins.eduardo.github_user_list.models.Repo
 import com.martins.eduardo.github_user_list.models.Sugestao
 import com.martins.eduardo.github_user_list.models.User
 import com.martins.eduardo.github_user_list.services.GitHubService
-import java.io.*
 import javax.inject.Inject
 
 
@@ -54,5 +51,9 @@ class Repository @Inject constructor(
         val listTutorialType = object : TypeToken<List<Color>>() {}.type
         val coresDecodificadas: List<Color> = Gson().fromJson(jsonCores, listTutorialType)
         codeColorsDao.insertColors(coresDecodificadas)
+    }
+
+    suspend fun carregaCor(linguagem: String): String?{
+        return codeColorsDao.selectColorHash(linguagem)
     }
 }

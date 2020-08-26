@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.*
+import com.martins.eduardo.github_user_list.adapter.ListaRepositoriosAdapter
 import com.martins.eduardo.github_user_list.extensions.component
 import com.martins.eduardo.github_user_list.models.Repo
 import com.martins.eduardo.github_user_list.models.User
@@ -42,15 +43,11 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
                 _usuario.postValue(usuarioEncontrado)
 
                 val repositoriosEncontrados = repository.buscaTodosRepositoriosNoGit(username)
-                _listaRepositorios.postValue(repositoriosEncontrados)
-
-                val listaLinguagens = mutableListOf<String>()
-
                 repositoriosEncontrados.forEach {
-                    listaLinguagens.add(it.language)
+                    it.languageHashColor = repository.carregaCor(it.language)
                 }
 
-                val a = 1
+                _listaRepositorios.postValue(repositoriosEncontrados)
 
             }catch (e: Exception){
                 Log.e("Erro de comunicação", e.message!!)
@@ -59,4 +56,13 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
             _isLoading.postValue(false)
         }
     }
+
+    fun carregaListaRepositorios() : ListaRepositoriosAdapter {
+        TODO("Not yet implemented")
+    }
+
+//    fun buscaHashDeCores(cores: List<String?>) : List<String?>{
+//        repository.
+//    }
+
 }
