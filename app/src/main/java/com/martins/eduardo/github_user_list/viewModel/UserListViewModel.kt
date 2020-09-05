@@ -56,13 +56,4 @@ class UserListViewModel (application: Application) : AndroidViewModel(applicatio
             _isLoading.postValue(false)
         }
     }
-
-    fun carregaListaRepositorios() : ListaRepositoriosAdapter {
-        TODO("Not yet implemented")
-    }
-
-//    fun buscaHashDeCores(cores: List<String?>) : List<String?>{
-//        repository.
-//    }
-
 }

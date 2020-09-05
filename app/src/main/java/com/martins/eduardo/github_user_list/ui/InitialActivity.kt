@@ -1,12 +1,14 @@
 package com.martins.eduardo.github_user_list.ui
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.martins.eduardo.github_user_list.R
 import com.martins.eduardo.github_user_list.viewModel.InitialViewModel
 import kotlinx.android.synthetic.main.activity_initial.*
+import javax.inject.Inject
 
 class InitialActivity : AppCompatActivity() {
     //TODO criar splashscreen
@@ -18,9 +20,6 @@ class InitialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_initial)
-
-        //todo chamar a criação da tabela somente uma vez (SharedPreferences)
-        viewModel.generateColorTable(this, "GitColors.json")
 
         button_buscar_usuario.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)

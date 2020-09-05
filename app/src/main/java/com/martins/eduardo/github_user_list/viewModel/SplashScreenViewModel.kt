@@ -11,21 +11,22 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
 
-class InitialViewModel(application: Application) : AndroidViewModel(application) {
+class SplashScreenViewModel(application: Application) : AndroidViewModel(application) {
 
     @Inject
-    lateinit var repository: Repository
-    @Inject
     lateinit var sharedPreferences: SharedPreferences
+    @Inject
+    lateinit var repository: Repository
+
+    private val chavePrimeiroAcesso = "PRIMEIRO_ACESSO"
 
     init {
         getApplication<Application>().component.inject(this)
     }
 
-    fun generateColorTable(context: Context, fileName: String){
-        val firstAccess = sharedPreferences.getBoolean("appFirstTime", true)
-        if(firstAccess){
-            //primeiro acesso ao app
+    fun generateColorTable(context: Context, fileName: String) {
+        val primeiroAcesso = sharedPreferences.getBoolean(chavePrimeiroAcesso, true)
+        if (primeiroAcesso) {
             var jsonString = ""
             try {
                 jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
@@ -36,6 +37,11 @@ class InitialViewModel(application: Application) : AndroidViewModel(application)
                 repository.criaTabelaDeCores(jsonString)
             }
         }
-        sharedPreferences.edit().putBoolean("appFirstTime", false).apply()
+        sharedPreferences.edit().putBoolean(
+            chavePrimeiroAcesso,
+            false
+        ).apply()
     }
+
+
 }
